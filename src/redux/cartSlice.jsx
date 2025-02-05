@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; // Import toast styles
 
 const cartSlice = createSlice({
   name: "cart",
@@ -9,13 +8,14 @@ const cartSlice = createSlice({
     addToCart: (state, action) => {
       const item = state.cartItems.find((i) => i.id === action.payload.id);
       if (item) {
-        toast.error("❌ Product is already in the cart!", {
+        item.quantity += 1; // Increment quantity if already in the cart
+        toast.info(`${action.payload.title} quantity updated!`, {
           position: "top-right",
           autoClose: 2000,
         });
       } else {
         state.cartItems.push({ ...action.payload, quantity: 1 });
-        toast.success("✅ Product added to cart!", {
+        toast.success(`${action.payload.title} added to cart!`, {
           position: "top-right",
           autoClose: 2000,
         });
@@ -28,8 +28,15 @@ const cartSlice = createSlice({
         autoClose: 2000,
       });
     },
+    updateQuantity: (state, action) => {
+      const { id, quantity } = action.payload;
+      const item = state.cartItems.find((i) => i.id === id);
+      if (item && quantity > 0) {
+        item.quantity = quantity; // Update quantity
+      }
+    },
   },
 });
 
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, updateQuantity } = cartSlice.actions;
 export default cartSlice.reducer;
