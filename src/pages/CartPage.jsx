@@ -37,7 +37,7 @@ const CartPage = () => {
       toast.error(<div className="flex items-center gap-2"><MdError className="text-red-500" /> Fill all details!</div>);
       return;
     }
-    toast.success(<div className="flex items-center gap-2"><FaCheckCircle className="text-green-500" /> Order placed!</div>);
+    toast.success(<div className="flex items-center gap-2"><FaCheckCircle className="text-green-500" /> Order placed successfully!</div>);
   };
 
   return (
@@ -77,15 +77,15 @@ const CartPage = () => {
 
       <div className="mt-8 bg-white p-6 shadow-lg rounded-xl border border-gray-300">
         <h3 className="text-2xl font-semibold text-gray-700 mb-4">Enter Details</h3>
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Full Name" className="w-full p-3 mb-3 border rounded-lg" />
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" className="w-full p-3 mb-3 border rounded-lg" />
-        <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Phone" className="w-full p-3 mb-3 border rounded-lg" />
-        <input type="text" value={deliveryAddress} onChange={(e) => setDeliveryAddress(e.target.value)} placeholder="Delivery Address" className="w-full p-3 mb-3 border rounded-lg" />
+        <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Full Name" className="w-full p-3 mb-3 border rounded-lg" required />
+        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" className="w-full p-3 mb-3 border rounded-lg" required />
+        <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Phone" className="w-full p-3 mb-3 border rounded-lg" required />
+        <input type="text" value={deliveryAddress} onChange={(e) => setDeliveryAddress(e.target.value)} placeholder="Delivery Address" className="w-full p-3 mb-3 border rounded-lg" required />
       </div>
 
       <div className="mt-8 bg-white p-6 shadow-lg rounded-xl border border-gray-300">
         <h3 className="text-2xl font-semibold text-gray-700 mb-4">Payment Method</h3>
-        <select value={selectedPayment} onChange={(e) => setSelectedPayment(e.target.value)} className="w-full p-3 border rounded-lg">
+        <select value={selectedPayment} onChange={(e) => setSelectedPayment(e.target.value)} className="w-full p-3 border rounded-lg" required>
           <option value="">-- Select Payment --</option>
           <option value="bKash">bKash</option>
           <option value="Nagad">Nagad</option>

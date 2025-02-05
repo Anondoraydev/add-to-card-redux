@@ -3,17 +3,17 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/cartSlice";
 import { FaShoppingCart } from "react-icons/fa";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
     dispatch(addToCart({ ...product, quantity: 1 }));
-    toast.success(`${product.title} added to cart!`, {
-      position: "top-right",
-      autoClose: 2000,
-    });
+    // toast.success(`${product.title} added to cart!`, {
+    //   position: "top-right",
+    //   autoClose: 2000,
+    // });
   };
 
   return (
@@ -35,8 +35,6 @@ const ProductCard = ({ product }) => {
           <FaShoppingCart size={18} /> Add to Cart
         </button>
       </div>
-
-      <ToastContainer position="top-right" autoClose={2000} />
     </div>
   );
 };
